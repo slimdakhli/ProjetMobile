@@ -38,6 +38,8 @@
             android:layout_weight="1"
             android:text="Sign Up"
             android:textColor="@android:color/white"
+            android:backgroundTint="@color/btnSignUp"
+
             app:buttonColor="@color/btnSignUp"
             app:cornerRadius="4dp"
             app:shadowColor="@android:color/black"
@@ -52,6 +54,8 @@
             android:layout_weight="1"
             android:text="Sign In"
             android:textColor="@android:color/white"
+            android:backgroundTint="@color/btnSignUp"
+
             app:buttonColor="@color/btnSignUpActive"
             app:cornerRadius="4dp"
             app:shadowColor="@android:color/black"

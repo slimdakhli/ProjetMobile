@@ -97,7 +97,7 @@
                         <TextView
                             android:id="@+id/food_price"
 
-                            android:text="1,000"
+                            android:text="10.00"
                             android:textColor="@color/colorPrimary"
                             android:textSize="18sp"
                             android:textStyle="bold"

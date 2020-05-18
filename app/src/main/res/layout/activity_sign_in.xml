@@ -58,6 +58,8 @@
         android:layout_alignParentBottom="true"
         android:text="Sign In"
         android:textColor="@android:color/white"
+        android:backgroundTint="@color/btnSignUpActive"
+
         app:buttonColor="@color/btnSignUpActive"
         app:cornerRadius="4dp"
         app:shadowColor="@android:color/black"

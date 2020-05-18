@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.miniproject.Model.User;
-import com.example.miniproject.common.common;
+import com.example.miniproject.common.Common;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +49,7 @@ public class SignIn extends AppCompatActivity {
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
                                 Toast.makeText(SignIn.this, "Sign In Successfully", Toast.LENGTH_SHORT).show();
                                 Intent homeIntent = new Intent(SignIn.this,Home.class);
-                                common.currentUser = user;
+                                Common.currentUser = user;
                                 startActivity(homeIntent);
                                 finish();
                             }

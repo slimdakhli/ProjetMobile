@@ -46,7 +46,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
                         }
                         else {
                             mDialog.dismiss();
-                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString());
+                            User user = new User(edtName.getText().toString(),edtPassword.getText().toString(),edtPhone.getText().toString());
                             table_user.child(edtPhone.getText().toString()).setValue(user);
                             Toast.makeText(SignUp.this, "Success Sign Up", Toast.LENGTH_SHORT).show();
                             finish();

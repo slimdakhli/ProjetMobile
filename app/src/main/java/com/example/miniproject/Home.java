@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import com.example.miniproject.Interface.ItemClickListener;
 import com.example.miniproject.Model.Category;
+import com.example.miniproject.Model.Order;
 import com.example.miniproject.ViewHolder.MenuViewHolder;
-import com.example.miniproject.common.common;
+import com.example.miniproject.common.Common;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.MenuItem;
 import android.view.View;
@@ -66,8 +66,8 @@ public class Home extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent cartIntent = new Intent(Home.this,Cart.class);
+                startActivity(cartIntent);
             }
         });
         DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
@@ -80,7 +80,7 @@ public class Home extends AppCompatActivity {
        // navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         textFullName = (TextView)headerView.findViewById(R.id.textFullName);
-        textFullName.setText(common.currentUser.getName());
+        textFullName.setText(Common.currentUser.getName());
         recycler_menu = (RecyclerView)findViewById(R.id.recycler_menu);
         recycler_menu.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -133,9 +133,11 @@ public class Home extends AppCompatActivity {
        // Toast.makeText(this,"back key is pressed", Toast.LENGTH_SHORT).show();
 
     }
+    
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -148,13 +150,22 @@ public class Home extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.nav_menu){
 
-
-        if ((item.getItemId()) == R.id.nav_log_out){
+        }else if (id == R.id.nav_cart){
+            Intent cartIntent =  new Intent(Home.this,Cart.class);
+            startActivity(cartIntent);
+        }else if (id == R.id.nav_order){
+            Intent orderIntent = new Intent(Home.this, Order.class);
+            startActivity(orderIntent);
+        }else if ( id == R.id.nav_log_out){
             Intent signIn = new Intent(Home.this,SignIn.class);
+            signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(signIn);
-            finish();
         }
+        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -164,6 +175,5 @@ public class Home extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 
 }
