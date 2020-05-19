@@ -44,7 +44,6 @@ public class Home extends AppCompatActivity {
     RecyclerView recycler_menu;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<Category, MenuViewHolder> adapter;
-    ItemClickListener log_out;
    // StorageReference storageReference;
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -77,7 +76,8 @@ public class Home extends AppCompatActivity {
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-       // navigationView.setNavigationItemSelectedListener(this);
+        setupDrawerContent(navigationView);
+       //navigationView.setNavigationItemSelectedListener(R.id.);
         View headerView = navigationView.getHeaderView(0);
         textFullName = (TextView)headerView.findViewById(R.id.textFullName);
         textFullName.setText(Common.currentUser.getName());
@@ -133,10 +133,12 @@ public class Home extends AppCompatActivity {
        // Toast.makeText(this,"back key is pressed", Toast.LENGTH_SHORT).show();
 
     }
-    
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -175,5 +177,32 @@ public class Home extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    private void setupDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        int id = menuItem.getItemId();
+                        if (id == R.id.nav_menu){
+
+                        }else if (id == R.id.nav_cart){
+                            Intent cartIntent =  new Intent(Home.this,Cart.class);
+                            startActivity(cartIntent);
+                        }else if (id == R.id.nav_order){
+                            Intent orderIntent = new Intent(Home.this, OrderStatus.class);
+                            startActivity(orderIntent);
+                        }else if ( id == R.id.nav_log_out){
+                            Intent signIn = new Intent(Home.this,SignIn.class);
+                            signIn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(signIn);
+                        }
+                        DrawerLayout drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+                        drawer.closeDrawer(GravityCompat.START);
+                        return true;
+
+                    }
+                });
+    }
+
 
 }
